@@ -1,9 +1,9 @@
 #!/bin/sh
-mkdir -p /tmp/tensorflow_pkg 2>> /dev/null
+mkdir -p /build/tensorflow_pkg 2>> /dev/null
 cd /build/tensorflow-1.0.1 && \
 ./configure < /tmp/tf-c7.ans && \
 bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package && \
-bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+bazel-bin/tensorflow/tools/pip_package/build_pip_package /build/tensorflow_pkg
 # test tf (installation via pip will upgrade CentOS provided numpy,python-setuptools and EPEL python-wheel)
 #
 # Dependencies Resolved
@@ -24,7 +24,7 @@ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
 
 yum -y remove numpy 
 pip install numpy
-cd / && pip install --user /tmp/tensorflow_pkg/tensorflow-1.0.1-cp27-none-linux_x86_64.whl
+cd / && pip install --user /build/tensorflow_pkg/tensorflow-1.0.1-cp27-none-linux_x86_64.whl
 python <<EOF
 # Creates a graph.
 import tensorflow as tf
