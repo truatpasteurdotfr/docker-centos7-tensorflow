@@ -22,7 +22,7 @@ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
 # ==========================================================================================
 # Remove  2 Packages (+2 Dependent packages)
 
-yum remove numpy 
+yum -y remove numpy 
 pip install numpy
 cd / && pip install --user /tmp/tensorflow_pkg/tensorflow-1.0.1-cp27-none-linux_x86_64.whl
 python <<EOF
